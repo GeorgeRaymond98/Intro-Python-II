@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -49,3 +50,43 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+
+current_room = room["narrow"]
+
+name = input("What's your name?")
+player = Player(name, current_room)
+describe = f"{player.name}, {current_room}"
+
+player_move = " "
+next_room = " "
+
+print(
+    "Listen carefully, Press [N] for North, [S] for South, [E] for East, [W] for West and [q] Quit")
+
+while True:
+    try:
+        player_move = input("Enter [N], [S], [E], [W] to move or [q] to Quit:")
+        if player_move == "n":
+            next_room = current_room.n_to
+            print(next_room)
+        elif player_move == "s":
+            next_room = current_room.s_to
+            print(next_room)
+        elif player_move == 'e':
+            next_room = current_room.e_to
+            print(next_room)
+        elif player_move == 'w':
+            next_room = current_room.w_to
+            print(next_room)
+        elif player_move == 'q':
+            print('Leaving the game.....')
+            break
+    except AttributeError:
+        print('Level is not ready!')
+        current_room = room['narrow']
+    if next_room:
+        current_room = next_room
+    else:
+        print(
+            "You didn't listen. Enter [N], [S], [E], [W] to move or [q] to Quit: ")
