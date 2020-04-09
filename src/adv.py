@@ -61,30 +61,30 @@ describe = f"{player.name}, {current_room}"
 player_move = " "
 next_room = " "
 
+print(f'Welcome {player.name} to {current_room}')
 print(
     "Listen carefully, Press [N] for North, [S] for South, [E] for East, [W] for West and [q] Quit")
 
 while True:
     try:
         player_move = input("Enter [N], [S], [E], [W] to move or [q] to Quit:")
-        if player_move == "n":
+        if player_move.upper() == "N":
             next_room = current_room.n_to
-            print(next_room)
-        elif player_move == "s":
+            print(f'{player.name} enters {next_room}')
+        elif player_move.upper() == "S":
             next_room = current_room.s_to
-            print(next_room)
-        elif player_move == 'e':
+            print(f'{player.name} enters {next_room}')
+        elif player_move.upper() == 'E':
             next_room = current_room.e_to
-            print(next_room)
-        elif player_move == 'w':
+            print(f'{player.name} enters {next_room}')
+        elif player_move.upper() == 'W':
             next_room = current_room.w_to
-            print(next_room)
-        elif player_move == 'q':
-            print('Leaving the game.....')
+            print(f'{player.name} enters {next_room}')
+        elif player_move.upper() == 'Q':
+            print(f'{player.name} is Leaving the game {current_room}')
             break
     except AttributeError:
-        print('Level is not ready!')
-        current_room = room['narrow']
+        print(f'Something is blocking {player_move} ')
     if next_room:
         current_room = next_room
     else:
